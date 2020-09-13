@@ -1,0 +1,16 @@
+from django.contrib.auth.models import User
+from django.db import models
+
+
+class Airline(models.Model):
+    name = models.CharField(max_length=32)
+    is_vip = models.BooleanField(default=False)
+
+
+class Flight(models.Model):
+    airline = models.ForeignKey(Airline, related_name='flights', on_delete=models.CASCADE)
+    clients = models.ManyToManyField(User, related_name='booked_flights')
+
+    from_city = models.CharField(max_length=32)
+    to_city = models.CharField(max_length=32)
+
