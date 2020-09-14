@@ -1,8 +1,9 @@
-from django.urls import path
+from rest_framework.routers import DefaultRouter
 
-from airlines.views import AirlineView
+from .views import AirlineViewSet
 
-urlpatterns = [
-    path('airlines/', AirlineView.as_view()),
-    path('airlines/<int:pk>', AirlineView.as_view()),
-]
+
+router = DefaultRouter()
+router.register(r'airlines', AirlineViewSet, basename='airlines')
+
+urlpatterns = router.get_urls()

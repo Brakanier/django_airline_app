@@ -3,11 +3,13 @@ from django.db import models
 
 
 class Airline(models.Model):
+    id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=32)
     is_vip = models.BooleanField(default=False)
 
 
 class Flight(models.Model):
+    id = models.IntegerField(primary_key=True)
     airline = models.ForeignKey(Airline, related_name='flights', on_delete=models.CASCADE)
     clients = models.ManyToManyField(User, related_name='booked_flights')
 
