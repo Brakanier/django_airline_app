@@ -1,6 +1,6 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.viewsets import ModelViewSet, ViewSet
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import DjangoModelPermissions
 
 from .serializers import AirlineSerializer
 from .models import Airline
@@ -8,6 +8,6 @@ from .models import Airline
 
 class AirlineViewSet(ModelViewSet):
     serializer_class = AirlineSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [DjangoModelPermissions]
     queryset = Airline.objects.all()
 

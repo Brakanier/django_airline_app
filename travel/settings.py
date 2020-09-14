@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core.apps.CoreConfig',
     'rest_framework',
-    'airlines'
+    'airlines',
+    'booking'
 ]
 
 MIDDLEWARE = [

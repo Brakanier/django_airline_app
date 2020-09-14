@@ -4,16 +4,20 @@ from django.core.management import BaseCommand
 
 import logging
 
-GROUPS_PERMISSIONS = {
-    'Users': {
+from airlines.models import Airline
+from core.groups import Roles
 
-    },
-    'Managers': {
+GROUPS_PERMISSIONS = {}
 
-    },
-    'Admins': {
-
-    }
+# permissions inheritance
+GROUPS_PERMISSIONS[Roles.USER] = {
+}
+GROUPS_PERMISSIONS[Roles.MANAGER] = {
+    **GROUPS_PERMISSIONS[Roles.USER],
+    Airline: ['add', 'change', 'delete', 'view']
+}
+GROUPS_PERMISSIONS[Roles.ADMIN] = {
+    **GROUPS_PERMISSIONS[Roles.MANAGER],
 }
 
 
